@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spider Park - Ultimate Family Fun & Swimming</title>
+<link rel="icon" type="image/png" sizes="32x32" href="Images/favicon.png">
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --spider-red: #E23636;
+  --spider-blue: #2B65EC;
+  --spider-dark: #0A0F1C;
+  --spider-light: #F8F9FA;
+  --accent-yellow: #FFD166;
+  --text-color: #333333;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Poppins', sans-serif; color: var(--text-color); line-height: 1.6; background-color: #ffffff; }
+h1, h2, h3, h4, h5 { font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--spider-dark); }
+
+/* Navbar */
+.navbar { background: linear-gradient(to bottom, rgba(62, 76, 110, 0) 0%, rgba(10, 15, 28, 0) 100%) !important; padding: 1.2rem 0; transition: all 0.3s ease; }
+.navbar-scrolled { background: rgba(34, 51, 95, 0.621) !important; box-shadow: 0 4px 20px rgba(226, 54, 54, 0.2); padding: 0.8rem 0; backdrop-filter: blur(10px); }
+.navbar-brand { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 900; color: white !important; text-transform: uppercase; letter-spacing: 1px; }
+.navbar-brand span { color: var(--spider-red); }
+.nav-link { color: white !important; font-weight: 500; margin: 0 0.8rem; transition: all 0.3s; position: relative; font-size: 1.05rem; }
+.nav-link:hover { color: var(--accent-yellow) !important; }
+.nav-link:after { content: ''; position: absolute; width: 0; height: 3px; bottom: 0; left: 0; background: linear-gradient(to right, var(--spider-red), var(--spider-blue)); transition: width 0.3s; border-radius: 2px; }
+.nav-link:hover:after { width: 100%; }
+
+/* Ensure the brand aligns the logo and text nicely */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+/* Logo Image Styling */
+.spider-logo {
+  height: 45px; /* Adjust this size if your logo is too big/small */
+  width: auto;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+}
+
+/* Fun little hover effect for the logo */
+.navbar-brand:hover .spider-logo {
+  transform: scale(1.1);
+}
+
+/* ============ HERO CAROUSEL ============ */
+/* ============ MOBILE-ONLY HERO (SMALL PHONES) ============ */
+#home-mobile { display: none; } /* Hidden by default */
+
+@media (max-width: 576px) {
+  #home { display: none !important; }   /* Hide desktop hero on small phones */
+  #home-mobile { display: block; }      /* Show mobile hero */
+}
+
+/* Compact sizing scoped ONLY to the mobile carousel */
+#home-mobile .carousel-item { height: 100vh; min-height: 480px; position: relative; }
+#home-mobile .carousel-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); }
+
+#home-mobile .carousel-content {
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 92%;
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+}
+
+/* SMALLER WORDS - no more overlapping */
+#home-mobile .hero-title {
+  font-size: 1.65rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+  line-height: 1.2;
+}
+#home-mobile .hero-subtitle {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+}
+
+/* Buttons: stacked vertically, small & tidy */
+#home-mobile .mt-4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+#home-mobile .btn-spider,
+#home-mobile .btn-outline-spider {
+  padding: 0.6rem 1.6rem;
+  font-size: 0.75rem;
+  border-radius: 50px;
+  min-width: 170px;
+  margin: 0 !important;
+}
+
+/* Tiny indicators, no arrows (swipe works natively) */
+#home-mobile .carousel-indicators { bottom: 14px; }
+#home-mobile .carousel-indicators button { width: 8px; height: 8px; margin: 0 4px; }
+#home-mobile .carousel-control-prev,
+#home-mobile .carousel-control-next { display: none; }
+
+/* ============ HERO CAROUSEL ============ */
+.hero-carousel { position: relative; height: 100vh; min-height: 600px; overflow: hidden; }
+.hero-carousel .carousel-item { height: 100vh; min-height: 600px; position: relative; }
+.hero-carousel .carousel-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
+.carousel-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(67, 32, 32, 0.231) 0%, rgba(28, 34, 54, 0.333) 100%); z-index: 1; }
+.carousel-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; text-align: center; width: 90%; max-width: 900px; color: white; }
+.hero-title { font-size: 4.5rem; margin-bottom: 1.5rem; color: white; text-transform: uppercase; letter-spacing: 2px; text-shadow: 3px 3px 15px rgba(0,0,0,0.8); }
+.hero-title span { color: var(--spider-red); }
+.hero-title span.blue { color: var(--spider-blue); }
+.hero-subtitle { font-size: 1.3rem; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; color: #f0f0f0; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+.hero-carousel .carousel-indicators button { width: 14px; height: 14px; border-radius: 50%; margin: 0 6px; background-color: rgba(255,255,255,0.5); border: 2px solid transparent; transition: all 0.3s ease; }
+.hero-carousel .carousel-indicators button.active { background-color: var(--spider-red); border-color: var(--spider-blue); transform: scale(1.2); }
+.hero-carousel .carousel-control-prev-icon, .hero-carousel .carousel-control-next-icon { width: 3rem; height: 3rem; background-color: rgba(226, 54, 54, 0.6); border-radius: 50%; background-size: 50%; }
+
+/* Buttons */
+.btn-spider { background: linear-gradient(45deg, var(--spider-red), var(--spider-blue)); color: white; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; border: none; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 5px 15px rgba(226, 54, 54, 0.4); text-decoration: none; display: inline-block; }
+.btn-spider:hover { background: linear-gradient(45deg, var(--spider-blue), var(--spider-red)); color: white; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(43, 101, 236, 0.5); text-decoration: none; }
+.btn-outline-spider { background-color: transparent; color: white; border: 2px solid white; padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; transition: all 0.3s; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; display: inline-block; }
+.btn-outline-spider:hover { background-color: white; color: var(--spider-dark); transform: translateY(-3px); text-decoration: none; }
+
+/* Sections */
+.section-title { color: var(--spider-dark); margin-bottom: 3rem; position: relative; padding-bottom: 1rem; text-align: center; text-transform: uppercase; letter-spacing: 1px; }
+.section-title:after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100px; height: 4px; background: linear-gradient(to right, var(--spider-red), var(--spider-blue)); border-radius: 2px; }
+.section-padding { padding: 7rem 0; }
+.section-subtitle { text-align: center; color: #666; margin-bottom: 4rem; font-size: 1.1rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+/* Pricing Cards */
+.pricing-card { border: none; border-radius: 15px; overflow: hidden; transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.08); height: 100%; border-top: 5px solid var(--spider-red); background: white; padding: 2rem; text-align: center; }
+.pricing-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(226, 54, 54, 0.15); }
+.pricing-card.featured { border-top: 5px solid var(--spider-blue); transform: scale(1.05); }
+.pricing-card.featured:hover { transform: translateY(-10px) scale(1.05); }
+.price-tag-large { font-size: 3.5rem; font-weight: 800; color: var(--spider-red); margin: 1rem 0; }
+.price-tag-large span { font-size: 1.2rem; color: #666; font-weight: 500; }
+
+/* Activity & Gallery Cards */
+.activity-card, .gallery-item { border: none; border-radius: 15px; overflow: hidden; transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.08); height: 100%; }
+.activity-card:hover, .gallery-item:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(43, 101, 236, 0.2); }
+.card-img-container { height: 250px; overflow: hidden; position: relative; cursor: pointer; }
+.card-img-container img { width: 100%; height: 100%; object-fit: cover; transition: all 0.3s ease; }
+.card-img-container:hover img { transform: scale(1.1); }
+.image-overlay { position: absolute; inset: 0; background: linear-gradient(45deg, rgba(226, 54, 54, 0.8), rgba(43, 101, 236, 0.8)); display: flex; align-items: center; justify-content: center; color: white; opacity: 0; transition: all 0.3s ease; }
+.card-img-container:hover .image-overlay { opacity: 1; }
+.image-overlay i { font-size: 2.5rem; animation: pulse 1.5s infinite; }
+
+/* Food & Drink Section */
+.food-notice { background: linear-gradient(135deg, rgba(226, 54, 54, 0.1), rgba(43, 101, 236, 0.1)); border-radius: 15px; padding: 2rem; border-left: 5px solid var(--spider-red); }
+
+/* Contact Form */
+.contact-form { background-color: white; padding: 3rem; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); height: 100%; border-top: 5px solid var(--spider-blue); }
+.form-control { padding: 1rem 1.2rem; border: 1px solid #e0e0e0; border-radius: 10px; margin-bottom: 1.5rem; font-size: 1rem; transition: all 0.3s; }
+.form-control:focus { border-color: var(--spider-blue); box-shadow: 0 0 0 0.25rem rgba(43, 101, 236, 0.25); }
+.map-container { border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); height: 100%; min-height: 400px; border: 5px solid var(--spider-red); }
+
+/* Footer */
+.footer { background-color: rgb(0, 0, 63); color: white; padding: 5rem 0 2rem; }
+.footer-title { color: var(--spider-red); margin-bottom: 1.5rem; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 1px; }
+.footer a { color: #ccc; text-decoration: none; transition: color 0.3s; }
+.footer a:hover { color: var(--spider-blue); }
+.social-icons a { display: inline-block; width: 45px; height: 45px; background: linear-gradient(45deg, var(--spider-red), var(--spider-blue)); border-radius: 50%; text-align: center; line-height: 45px; margin-right: 10px; color: white; transition: all 0.3s; }
+.social-icons a:hover { transform: translateY(-5px) scale(1.1); color: white; }
+
+/* Modal Styles */
+.modal-header { background: linear-gradient(to right, var(--spider-dark), #1a233a); color: white; }
+.modal-title { color: var(--spider-red); }
+.close-btn { color: white; }
+
+/* Utilities */
+.color-red { color: var(--spider-red); }
+.color-blue { color: var(--spider-blue); }
+.bg-light-spider { background-color: #f8f9fa; }
+
+/* Gallery Item Styles */
+.gallery-item {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  background: #fff;
+}
+.gallery-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(226, 54, 54, 0.2);
+}
+.card-img-container {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  height: 250px; /* Fixed height for uniform grid */
+}
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.card-img-container:hover .gallery-image {
+  transform: scale(1.1);
+}
+.image-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(45deg, rgba(226, 54, 54, 0.85), rgba(43, 101, 236, 0.85));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.card-img-container:hover .image-overlay {
+  opacity: 1;
+}
+.image-overlay i {
+  font-size: 2.5rem;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+.card-img-container:hover .image-overlay i {
+  transform: scale(1);
+}
+
+/* Modal Styles */
+#imageModal .modal-content {
+  background-color: #fff;
+  border-radius: 15px;
+  border: 3px solid var(--spider-red);
+}
+#imageModal .modal-header {
+  background: linear-gradient(to right, var(--spider-dark), #1a233a);
+  color: white;
+  border-bottom: 2px solid var(--spider-blue);
+}
+#imageModal .btn-close {
+  filter: invert(1);
+}
+
+/* ============ SERVICES SECTION STYLES ============ */
+.service-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top colored border that changes on hover */
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--spider-red), var(--spider-blue));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+  transform-origin: left;
+}
+
+.service-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 20px 40px rgba(226, 54, 54, 0.15);
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Icon Container */
+.service-icon-wrapper {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, rgba(226, 54, 54, 0.1), rgba(43, 101, 236, 0.1));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.service-card:hover .service-icon-wrapper {
+  background: linear-gradient(135deg, var(--spider-red), var(--spider-blue));
+  transform: scale(1.1) rotate(5deg);
+}
+
+.service-icon-wrapper i {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, var(--spider-red), var(--spider-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.4s ease;
+}
+
+.service-card:hover .service-icon-wrapper i {
+  -webkit-text-fill-color: #ffffff;
+}
+
+/* Typography */
+.service-card h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--spider-dark);
+  transition: color 0.3s ease;
+}
+
+.service-card:hover h4 {
+  color: var(--spider-red);
+}
+
+.service-card p {
+  color: #6c757d;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* Special "Etc" Card Styling */
+.service-card.special-card {
+  background: linear-gradient(135deg, var(--spider-dark) 0%, #1a233a 100%);
+  border: none;
+}
+
+.service-card.special-card::before {
+  background: linear-gradient(90deg, var(--spider-red), var(--accent-yellow));
+  transform: scaleX(1); /* Always visible */
+}
+
+.service-card.special-card h4 {
+  color: var(--accent-yellow);
+}
+
+.service-card.special-card p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.service-card.special-card .service-icon-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.service-card.special-card .service-icon-wrapper i {
+  background: linear-gradient(135deg, var(--spider-red), var(--accent-yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.service-card.special-card:hover h4 {
+  color: var(--spider-red);
+}
+
+/* ============ VERTICAL EVENT POSTERS ============ */
+.event-poster-wrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  aspect-ratio: 3/4; /* Forces vertical poster shape */
+  max-height: 550px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 380px; 
+}
+.event-poster-wrapper:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(226, 54, 54, 0.4);
+}
+.event-poster-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Crops beautifully if images aren't perfectly vertical */
+  transition: transform 0.5s ease;
+}
+.event-poster-wrapper:hover img {
+  transform: scale(1.08);
+}
+
+/* Click Overlay */
+.poster-click-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 15, 28, 0.8) 0%, rgba(10, 15, 28, 0.2) 50%, transparent 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.event-poster-wrapper:hover .poster-click-overlay { opacity: 1; }
+.poster-click-overlay i {
+  font-size: 2rem;
+  color: white;
+  background: linear-gradient(135deg, var(--spider-red), var(--spider-blue));
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+.event-poster-wrapper:hover .poster-click-overlay i { transform: scale(1); }
+
+/* Keep badges on top of overlay */
+.event-poster-wrapper .event-date-badge { z-index: 2; }
+.event-poster-wrapper .event-tag { z-index: 2; }
+
+/* Poster Modal Styles */
+#eventPosterModal .modal-dialog { max-width: 450px; }
+#eventPosterModal .modal-content {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+#eventPosterModal .modal-body { padding: 0; position: relative; }
+#eventPosterModal img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+  border: 3px solid rgba(255,255,255,0.1);
+}
+#eventPosterModal .btn-close-white {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 10;
+  background-color: rgba(226, 54, 54, 0.8);
+  border-radius: 50%;
+  padding: 12px;
+  opacity: 1;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+#eventPosterModal .btn-close-white:hover { background-color: var(--spider-blue); }
+
+/* ============ COOLER BOX FEE NOTICE ============ */
+.coolerbox-notice {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.8rem 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-left: 6px solid var(--spider-blue);
+  margin-top: 3rem;
+  transition: all 0.3s ease;
+}
+.coolerbox-notice:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(43, 101, 236, 0.2);
+}
+.coolerbox-icon {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(43, 101, 236, 0.15), rgba(226, 54, 54, 0.15));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--spider-blue);
+}
+.coolerbox-notice h5 {
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: var(--spider-dark);
+}
+.coolerbox-notice p {
+  color: #6c757d;
+  font-size: 0.95rem;
+}
+.coolerbox-price {
+  margin-left: auto;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--spider-red), var(--spider-blue));
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(226, 54, 54, 0.35);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+.coolerbox-price small {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* ============ WOW CONTACT SECTION ============ */
+.contact-section-v2 {
+  padding: 7rem 0;
+  background: linear-gradient(135deg, #f8f9ff 0%, #fff5f5 100%);
+  position: relative;
+  overflow: hidden;
+}
+.contact-glow {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.2;
+  pointer-events: none;
+}
+.glow-red { background: var(--spider-red); top: -150px; left: -150px; }
+.glow-blue { background: var(--spider-blue); bottom: -150px; right: -150px; }
+
+/* Quick Contact Cards */
+.contact-info-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+  height: 100%;
+  transition: all 0.35s ease;
+  border-bottom: 4px solid transparent;
+}
+.contact-info-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(226, 54, 54, 0.18);
+  border-bottom-color: var(--spider-red);
+}
+.cic-icon {
+  width: 64px; height: 64px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--spider-red), var(--spider-blue));
+  box-shadow: 0 8px 20px rgba(226, 54, 54, 0.35);
+  transition: transform 0.35s ease;
+}
+.contact-info-card:hover .cic-icon { transform: scale(1.12) rotate(-8deg); }
+.cic-icon.whatsapp {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+}
+.contact-info-card h5 { font-weight: 700; margin-bottom: 0.5rem; }
+.contact-info-card a { color: var(--spider-blue); text-decoration: none; font-weight: 600; }
+.contact-info-card a:hover { color: var(--spider-red); }
+.contact-info-card small { color: #8a94a6; }
+
+/* Form Card with Animated Gradient Border */
+.contact-form-v2 {
+  background: #fff;
+  border-radius: 22px;
+  padding: 2.8rem;
+  box-shadow: 0 20px 50px rgba(10, 15, 28, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+.contact-form-v2::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--spider-red), var(--spider-blue), var(--spider-red));
+  background-size: 200% 100%;
+  animation: gradientSlide 4s linear infinite;
+}
+@keyframes gradientSlide {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Map Frame */
+.map-frame {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  min-height: 450px;
+  box-shadow: 0 20px 50px rgba(10, 15, 28, 0.15);
+  border: 6px solid #fff;
+  outline: 2px solid rgba(226, 54, 54, 0.35);
+}
+.map-frame iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+  border: 0;
+  display: block;
+}
+.map-badge {
+  position: absolute;
+  top: 18px; left: 18px;
+  background: rgba(10, 15, 28, 0.85);
+  color: #fff;
+  padding: 0.55rem 1.1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex; align-items: center; gap: 0.5rem;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  z-index: 5;
+}
+.pulse-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: #22c55e;
+  position: relative;
+  flex-shrink: 0;
+}
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #22c55e;
+  animation: dotPulse 1.6s infinite;
+}
+@keyframes dotPulse {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+.map-overlay-card {
+  position: absolute;
+  bottom: 18px; left: 18px; right: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  z-index: 5;
+}
+
+
+.map-overlay-card h5 { margin: 0; font-weight: 800; }
+
+/* Responsive */
+@media (max-width: 576px) {
+  .contact-form-v2 { padding: 2rem 1.5rem; }
+  .map-overlay-card { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+  .map-frame { min-height: 380px; }
+  .map-frame iframe { min-height: 380px; }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .coolerbox-notice {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+  .coolerbox-price {
+    margin-left: 0;
+  }
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .service-card {
+    padding: 2rem 1rem;
+  }
+  .service-icon-wrapper {
+    width: 75px;
+    height: 75px;
+  }
+  .service-icon-wrapper i {
+    font-size: 2rem;
+  }
+}
+
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+/* Responsive */
+@media (max-width: 992px) { .hero-title { font-size: 3rem; } .section-padding { padding: 5rem 0; } }
+@media (max-width: 768px) { .hero-title { font-size: 2.5rem; } .section-padding { padding: 4rem 0; } .contact-form { padding: 2rem; } .pricing-card.featured { transform: scale(1); } }
+/* ============ PHONE FIX: KILL HORIZONTAL SCROLL + FULL-BLEED HERO ============ */
+
+/* 1. Removes the horizontal scroll/wheel completely */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+  width: 100%;
+}
+
+/* 2. Hero sections now stretch edge-to-edge (cover both sides) */
+#home,
+#home-mobile,
+.hero-carousel {
+  width: 100% !important;
+  max-width: 100vw !important;
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 3. Images fill the full screen width - no gaps on left/right */
+#home-mobile .carousel-item img,
+.hero-carousel .carousel-item img {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100vw;
+}
+
+/* 4. Center the text WITHOUT pushing past the screen edges (fixes overlap) */
+#home-mobile .carousel-content {
+  left: 0;
+  width: 100%;
+  top: 55%;
+  transform: translateY(-50%);
+  padding: 0 1.2rem;   /* breathing room on both sides */
+}
+
+/* 5. Buttons can never force the page wider than the phone */
+#home-mobile .btn-spider,
+#home-mobile .btn-outline-spider {
+  max-width: 85%;
+  white-space: normal;
+}
+
+/* 6. Keep indicators & content inside the screen */
+#home-mobile .carousel-indicators {
+  left: 0;
+  right: 0;
+  margin: 0;
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <!-- Updated Brand with Logo -->
+    <a class="navbar-brand" href="#">
+      
+      <span style="color: blue;">Spider</span><span>Park </span>
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#services">Service</a></li>
+        <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+      <button class="btn btn-spider ms-lg-3 mt-3 mt-lg-0" data-bs-toggle="modal" data-bs-target="#bookingModal">
+        <i class="fas fa-ticket-alt me-2"></i>Book Now
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Carousel Section -->
+<section id="home" class="hero-carousel">
+  <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+    <!-- Updated Indicators for 6 Slides -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="5"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <!-- Slide 1: Welcome / Event Area -->
+      <div class="carousel-item active">
+        <img src="Images/Home/spider1.jpeg" alt="Spider Park Event Area">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+          <h1 class="hero-title">Welcome to <span>Spider</span> <span class="blue">Park</span></h1>
+          <p class="hero-subtitle">The ultimate family destination featuring thrilling swimming pools, fun events, and a web-slinging good time for kids and adults!</p>
+          <div class="mt-4">
+            <a href="#pricing" class="btn btn-spider me-3"><i class="fas fa-ticket-alt me-2"></i>View Tickets</a>
+            <a href="#contact" class="btn btn-outline-spider"><i class="fas fa-phone me-2"></i>Contact Us</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Garden / Mural Area -->
+      <div class="carousel-item">
+        <img src="Images/Home/spider2.jpeg" alt="Spider Park Garden">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+          <h1 class="hero-title">Fun for the <span>Whole</span> <span class="blue">Family</span></h1>
+          <p class="hero-subtitle">Beautiful outdoor spaces, amazing murals, and a safe environment for your little heroes to explore and play.</p>
+          <div class="mt-4">
+            <a href="#activities" class="btn btn-spider me-3"><i class="fas fa-swimmer me-2"></i>Our Pools</a>
+            <a href="#gallery" class="btn btn-outline-spider"><i class="fas fa-images me-2"></i>View Gallery</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: Kids / Memories -->
+      <div class="carousel-item">
+        <img src="Images/Home/spider3.jpeg" alt="Kids at Spider Park">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+          <h1 class="hero-title">Unforgettable <span>Memories</span> <span class="blue">Await</span></h1>
+          <p class="hero-subtitle">From swimming adventures to birthday parties, Spider Park is where childhood dreams come to life!</p>
+          <div class="mt-4">
+            <a href="#bookingModal" class="btn btn-spider me-3" data-bs-toggle="modal" data-bs-target="#bookingModal"><i class="fas fa-calendar-check me-2"></i>Book a Party</a>
+            <a href="#food" class="btn btn-outline-spider"><i class="fas fa-utensils me-2"></i>Food & Drinks</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Swimming Pools -->
+      <div class="carousel-item">
+        <img src="Images/Home/home5.jpg" alt="Spider Park Swimming Pools">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+          <h1 class="hero-title">Dive into <span>Fun</span> <span class="blue">Pools</span></h1>
+          <p class="hero-subtitle">Cool off in our sparkling swimming pools! We have separate, safe areas for kids and adults to relax and splash around.</p>
+          <div class="mt-4">
+            <a href="#activities" class="btn btn-spider me-3"><i class="fas fa-water me-2"></i>Explore Pools</a>
+            <a href="#pricing" class="btn btn-outline-spider"><i class="fas fa-ticket-alt me-2"></i>Entry Prices</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: Birthday Parties & Events -->
+      <div class="carousel-item">
+        <img src="Images/Home/home.jpg" alt="Birthday Parties at Spider Park">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+          <h1 class="hero-title">Host Your <span>Perfect</span> <span class="blue">Party</span></h1>
+          <p class="hero-subtitle">Birthdays, Baby Showers, Weddings, and Lobola negotiations. Let us host your special events in our beautiful, secure venue.</p>
+          <div class="mt-4">
+            <a href="#services" class="btn btn-spider me-3"><i class="fas fa-concierge-bell me-2"></i>Our Services</a>
+            <a href="#contact" class="btn btn-outline-spider"><i class="fas fa-envelope me-2"></i>Enquire Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6: Relax & Enjoy -->
+      <div class="carousel-item">
+        <img src="Images/Home/spider6.jpeg" alt="Relax at Spider Park">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+          <h1 class="hero-title">Relax, <span>Enjoy</span> <span class="blue">& Unwind</span></h1>
+          <p class="hero-subtitle">Grab a cold drink from our bar, enjoy a picnic on the lush green grass, and let the kids play safely while you relax.</p>
+          <div class="mt-4">
+            <a href="#food" class="btn btn-spider me-3"><i class="fas fa-glass-cheers me-2"></i>Food & Drinks</a>
+            <a href="#gallery" class="btn btn-outline-spider"><i class="fas fa-camera me-2"></i>See More</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</section>
+<!-- ============ MOBILE-ONLY HERO CAROUSEL (SMALL PHONES) ============ -->
+<section id="home-mobile" class="hero-carousel">
+  <div id="heroCarouselMobile" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#heroCarouselMobile" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#heroCarouselMobile" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#heroCarouselMobile" data-bs-slide-to="2"></button>
+      <button type="button" data-bs-target="#heroCarouselMobile" data-bs-slide-to="3"></button>
+      <button type="button" data-bs-target="#heroCarouselMobile" data-bs-slide-to="4"></button>
+      <button type="button" data-bs-target="#heroCarouselMobile" data-bs-slide-to="5"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <img src="Images/Home/spider1.jpeg" alt="Spider Park Event Area">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+          <h1 class="hero-title">Welcome to <span>Spider</span> <span class="blue">Park</span></h1>
+          <p class="hero-subtitle">Pools, events & fun for kids and adults!</p>
+          <div class="mt-4">
+            <a href="#pricing" class="btn btn-spider"><i class="fas fa-ticket-alt me-1"></i>Tickets</a>
+            <a href="#contact" class="btn btn-outline-spider"><i class="fas fa-phone me-1"></i>Contact</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <img src="Images/Home/spider2.jpeg" alt="Spider Park Garden">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+          <h1 class="hero-title">Fun for the <span>Whole</span> <span class="blue">Family</span></h1>
+          <p class="hero-subtitle">Beautiful gardens, murals & safe play spaces.</p>
+          <div class="mt-4">
+            <a href="#activities" class="btn btn-spider"><i class="fas fa-swimmer me-1"></i>Our Pools</a>
+            <a href="#gallery" class="btn btn-outline-spider"><i class="fas fa-images me-1"></i>Gallery</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <img src="Images/Home/spider3.jpeg" alt="Kids at Spider Park">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+          <h1 class="hero-title">Unforgettable <span>Memories</span></h1>
+          <p class="hero-subtitle">Swimming, parties & childhood dreams!</p>
+          <div class="mt-4">
+            <a href="#" class="btn btn-spider" data-bs-toggle="modal" data-bs-target="#bookingModal"><i class="fas fa-calendar-check me-1"></i>Book a Party</a>
+            <a href="#food" class="btn btn-outline-spider"><i class="fas fa-utensils me-1"></i>Food & Drinks</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="carousel-item">
+        <img src="Images/Home/home5.jpg" alt="Spider Park Swimming Pools">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+          <h1 class="hero-title">Dive into <span>Fun</span> <span class="blue">Pools</span></h1>
+          <p class="hero-subtitle">Safe separate pools for kids & adults.</p>
+          <div class="mt-4">
+            <a href="#activities" class="btn btn-spider"><i class="fas fa-water me-1"></i>Explore Pools</a>
+            <a href="#pricing" class="btn btn-outline-spider"><i class="fas fa-ticket-alt me-1"></i>Entry Prices</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="carousel-item">
+        <img src="Images/Home/home.jpg" alt="Birthday Parties at Spider Park">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+          <h1 class="hero-title">Host Your <span>Perfect</span> <span class="blue">Party</span></h1>
+          <p class="hero-subtitle">Birthdays, weddings, lobola & more!</p>
+          <div class="mt-4">
+            <a href="#services" class="btn btn-spider"><i class="fas fa-concierge-bell me-1"></i>Our Services</a>
+            <a href="#contact" class="btn btn-outline-spider"><i class="fas fa-envelope me-1"></i>Enquire Now</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6 -->
+      <div class="carousel-item">
+        <img src="Images/Home/spider6.jpeg" alt="Relax at Spider Park">
+        <div class="carousel-overlay"></div>
+        <div class="carousel-content">
+          <h1 class="hero-title">Relax, <span>Enjoy</span> <span class="blue">& Unwind</span></h1>
+          <p class="hero-subtitle">Cold drinks, picnics & shade while kids play.</p>
+          <div class="mt-4">
+            <a href="#food" class="btn btn-spider"><i class="fas fa-glass-cheers me-1"></i>Food & Drinks</a>
+            <a href="#gallery" class="btn btn-outline-spider"><i class="fas fa-camera me-1"></i>See More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- No arrows on phones - guests simply swipe left/right -->
+  </div>
+</section>
+<!-- Stats Counter -->
+<div class="stats-counter py-5" style="background: linear-gradient(45deg, var(--spider-dark), #1a233a); color: white;">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-3 col-6 mb-4">
+        <div class="stat-number" style="font-size: 3rem; font-weight: 800; color: var(--spider-red);">R30</div>
+        <div class="stat-label text-uppercase">Kids Entry</div>
+      </div>
+      <div class="col-md-3 col-6 mb-4">
+        <div class="stat-number" style="font-size: 3rem; font-weight: 800; color: var(--spider-blue);">R50</div>
+        <div class="stat-label text-uppercase">Adults Entry</div>
+      </div>
+      <div class="col-md-3 col-6 mb-4">
+        <div class="stat-number" style="font-size: 3rem; font-weight: 800; color: var(--accent-yellow);">08AM</div>
+        <div class="stat-label text-uppercase">Till Late</div>
+      </div>
+      <div class="col-md-3 col-6 mb-4">
+        <div class="stat-number" style="font-size: 3rem; font-weight: 800; color: white;">100%</div>
+        <div class="stat-label text-uppercase">Family Fun</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pricing / Tickets Section -->
+<section id="pricing" class="section-padding bg-light-spider">
+  <div class="container">
+    <h2 class="section-title">Entry Tickets</h2>
+    <p class="section-subtitle">Affordable fun for everyone! Come enjoy our amazing facilities.</p>
+    
+    <div class="row justify-content-center g-4">
+      <div class="col-md-5">
+        <div class="pricing-card">
+          <i class="fas fa-child fa-3x color-blue mb-3"></i>
+          <h3 class="color-blue">Kids Pass</h3>
+          <p class="text-muted">Ages 2 - 12</p>
+          <div class="price-tag-large">R30<span>/person</span></div>
+          <ul class="list-unstyled mb-4">
+            <li class="mb-2"><i class="fas fa-check color-red me-2"></i>Access to Kids Swimming Pool</li>
+            <li class="mb-2"><i class="fas fa-check color-red me-2"></i>Play Areas</li>
+            <li class="mb-2"><i class="fas fa-check color-red me-2"></i>Safe & Secure Environment</li>
+          </ul>
+          <button class="btn btn-spider w-100" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="pricing-card featured">
+          <i class="fas fa-user fa-3x color-red mb-3"></i>
+          <h3 class="color-red">Adults Pass</h3>
+          <p class="text-muted">Ages 13+</p>
+          <div class="price-tag-large" style="color: var(--spider-blue);">R50<span>/person</span></div>
+          <ul class="list-unstyled mb-4">
+            <li class="mb-2"><i class="fas fa-check color-blue me-2"></i>Access to Adult Swimming Pool</li>
+            <li class="mb-2"><i class="fas fa-check color-blue me-2"></i>Relaxation Areas</li>
+            <li class="mb-2"><i class="fas fa-check color-blue me-2"></i>Event & Party Hosting</li>
+          </ul>
+          <button class="btn btn-spider w-100" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cooler Box Fee Notice -->
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="coolerbox-notice">
+          <div class="coolerbox-icon">
+            <i class="fas fa-snowflake"></i>
+          </div>
+          <div>
+            <h5>Bringing Your Own Cooler Box?</h5>
+            <p class="mb-0">A fee of <strong class="color-red">R50 per cooler box</strong> applies on entry. Prefer to travel light? Cold drinks & refreshments are sold inside the park!</p>
+          </div>
+          <div class="coolerbox-price">R50<small>per cooler box</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ UPCOMING EVENTS SECTION ============ -->
+<!-- ============ UPCOMING EVENTS SECTION ============ -->
+<section id="events" class="events-section">
+  <div class="container position-relative">
+    <h2 class="events-title text-center">Upcoming <span>Events</span></h2>
+    <p class="events-subtitle text-center">Mark your calendars! Click on any poster to view the full details of our upcoming events.</p>
+
+    <div class="row g-5 justify-content-center">
+      
+      <!-- Poster 1: Halloween -->
+      <div class="col-lg-4 col-md-6 d-flex justify-content-center">
+        <div class="event-poster-wrapper" data-bs-toggle="modal" data-bs-target="#eventPosterModal" data-image="Images/Events/halloween.jpeg" data-title="summer welcoming Party">
+          <img src="Images/Events/halloween.jpeg" alt="summer welcoming Party">
+          <div class="event-date-badge">
+            <span class="day">5</span>
+            <span class="month">Sept</span>
+          </div>
+          <span class="event-tag">Pool Party</span>
+          <div class="poster-click-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Poster 2: New Year -->
+      <div class="col-lg-4 col-md-6 d-flex justify-content-center">
+        <div class="event-poster-wrapper" data-bs-toggle="modal" data-bs-target="#eventPosterModal" data-image="Images/Events/newyear.jpeg" data-title="New Year Splash Bash">
+          <img src="Images/Events/newyear.jpeg" alt="New Year Splash Bash">
+          <div class="event-date-badge">
+            <span class="day">31</span>
+            <span class="month">Dec</span>
+          </div>
+          <span class="event-tag">Special</span>
+          <div class="poster-click-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Poster 3: Heritage Day -->
+      <div class="col-lg-4 col-md-6 d-flex justify-content-center">
+        <div class="event-poster-wrapper" data-bs-toggle="modal" data-bs-target="#eventPosterModal" data-image="Images/Events/newyear.jpeg" data-title="Summer Celebration">
+          <img src="Images/Events/newyear.jpeg" alt="Heritage Day Celebration">
+          <div class="event-date-badge">
+            <span class="day">6</span>
+            <span class="month">Sep</span>
+          </div>
+          <span class="event-tag">Cultural</span>
+          <div class="poster-click-overlay">
+            <i class="fas fa-search-plus"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-5">
+      <p class="text-white-50 mb-3"><i class="fas fa-bullhorn me-2" style="color: var(--accent-yellow);"></i>Want to host your own event on a different date? We've got the space!</p>
+      <a href="#contact" class="btn btn-spider"><i class="fas fa-envelope me-2"></i>Enquire About Hosting</a>
+    </div>
+  </div>
+</section>
+<!-- Event Poster View Modal -->
+<div class="modal fade" id="eventPosterModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-body">
+        <img id="fullEventPoster" src="" alt="Event Poster" class="img-fluid">
+        <h4 id="eventPosterTitle" class="text-center text-white mt-3 fw-bold" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8);"></h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Activities Section -->
+<!-- Services Section -->
+<section id="services" class="section-padding">
+  <div class="container">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-subtitle">From intimate gatherings to grand celebrations, Spider Park is the perfect venue to host your most memorable moments!</p>
+    
+    <div class="row g-4">
+      <!-- 1. Events -->
+      <div class="col-lg-3 col-md-6">
+        <div class="service-card">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-glass-cheers"></i>
+          </div>
+          <h4>Events & Functions</h4>
+          <p>Corporate events, family reunions, and large-scale functions hosted in our spacious, secure outdoor venues.</p>
+        </div>
+      </div>
+
+      <!-- 2. Weddings -->
+      <div class="col-lg-3 col-md-6">
+        <div class="service-card">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-camera"></i>
+          </div>
+          <h4>Weddings</h4>
+          <p>Beautiful garden weddings with ample space for your guests, ceremonies, and receptions under the sun.</p>
+        </div>
+      </div>
+
+      <!-- 3. Baby Showers -->
+      <div class="col-lg-3 col-md-6">
+        <div class="service-card">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-baby-carriage"></i>
+          </div>
+          <h4>Baby Showers</h4>
+          <p>Safe, fun, and beautifully shaded areas perfect for welcoming the newest little hero to the family.</p>
+        </div>
+      </div>
+
+      <!-- 4. Birthday Parties -->
+      <div class="col-lg-3 col-md-6">
+        <div class="service-card">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-cake-candles"></i>
+          </div>
+          <h4>Birthday Parties</h4>
+          <p>Make birthdays epic! Kids and adults can enjoy the pools, games, and a fantastic party atmosphere.</p>
+        </div>
+      </div>
+
+      <!-- 5. Picnics -->
+      <div class="col-lg-3 col-md-6">
+        <div class="service-card">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-tree"></i>
+          </div>
+          <h4>Picnics</h4>
+          <p>Relaxing picnic spots with lush green grass, shade, and a peaceful environment for family day-outs.</p>
+        </div>
+      </div>
+
+      <!-- 6. Lobola -->
+      <div class="col-lg-3 col-md-6">
+        <div class="service-card">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h4>Lobola Negotiations</h4>
+          <p>A private, respectful, and comfortable setting for traditional meetings and family negotiations.</p>
+        </div>
+      </div>
+
+      <!-- 7. Decor -->
+      <div class="col-lg-3 col-md-6">
+        <div class="service-card">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-palette"></i>
+          </div>
+          <h4>Decor & Styling</h4>
+          <p>Transform our space with our decor services. We help style your event to match your unique theme.</p>
+        </div>
+      </div>
+
+      <!-- 8. Custom Packages (Etc) -->
+      <div class="col-lg-3 col-md-6">
+        <div class="service-card special-card">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-star"></i>
+          </div>
+          <h4>Custom Packages</h4>
+          <p>Need something specific? Contact us to create a custom package tailored exactly to your needs!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-5">
+      <p class="lead mb-4" style="color: #6c757d;">
+        <i class="fas fa-info-circle me-2" style="color: var(--spider-blue);"></i>
+        Food arrangements can be made via our contact form. Refreshments and drinks are available for purchase inside the park!
+      </p>
+      <a href="#contact" class="btn btn-spider">
+        <i class="fas fa-envelope me-2"></i>Enquire About a Service
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Food & Drinks Section -->
+<section id="food" class="section-padding bg-light-spider">
+  <div class="container">
+    <h2 class="section-title">Food & Drinks</h2>
+    <p class="section-subtitle">Refreshments and catering options for your visit.</p>
+    
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="food-notice h-100" style="border-left-color: var(--spider-blue); background: linear-gradient(135deg, rgba(43, 101, 236, 0.1), rgba(226, 54, 54, 0.1));">
+          <i class="fas fa-glass-cheers fa-3x color-blue mb-3"></i>
+          <h3 class="color-blue">Drinks Available Inside</h3>
+          <p class="mb-0">Thirsty after a swim? Don't worry! We have a variety of refreshing cold drinks, cool beverages, and snacks available for purchase right inside the park. No need to bring your own drinks!</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="food-notice h-100">
+          <i class="fas fa-utensils fa-3x color-red mb-3"></i>
+          <h3 class="color-red">Food Arrangements</h3>
+          <p class="mb-3">Planning a birthday party or a big group outing? We can arrange delicious food catering for your event!</p>
+          <p class="mb-0"><strong>How to order:</strong> Simply fill out the contact form below, select "Food Arrangement", and let us know your requirements. We'll get back to you with a custom menu and quote!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery" class="section-padding">
+  <div class="container">
+    <h2 class="section-title">Park Gallery</h2>
+    <p class="section-subtitle">Take a peek at the fun waiting for you at Spider Park!</p>
+    
+    <div class="row g-4">
+      <!-- Image 1 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="gallery-item">
+          <div class="card-img-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="Images/Home/event.jpeg" data-title="Spiderpark Resort">
+            <img src="Images/Home/event.jpeg" alt="Event Area" class="gallery-image">
+            <div class="image-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+      </div>
+      <!-- Image 2 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="gallery-item">
+          <div class="card-img-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="Images/Home/bar.jpeg" data-title="Spiderpark Resort">
+            <img src="Images/Home/bar.jpeg" alt="Gardens" class="gallery-image">
+            <div class="image-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+      </div>
+      <!-- Image 3 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="gallery-item">
+          <div class="card-img-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="Images/Home/spder4.jpeg" data-title="Spiderpark Resort">
+            <img src="Images/Home/spder4.jpeg" alt="Happy Kids" class="gallery-image">
+            <div class="image-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+      </div>
+      <!-- Image 4 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="gallery-item">
+          <div class="card-img-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="Images/Home/spider4.jpeg" data-title="Spiderpark Resort">
+            <img src="Images/Home/spider4.jpeg" alt="Spider Park Fun" class="gallery-image">
+            <div class="image-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+      </div>
+      <!-- Image 5 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="gallery-item">
+          <div class="card-img-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="Images/Home/wedding.jpg" data-title="Spiderpark Resort">
+            <img src="Images/Home/wedding.jpg" alt="Swimming Pool" class="gallery-image">
+            <div class="image-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+      </div>
+      <!-- Image 6 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="gallery-item">
+          <div class="card-img-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="Images/Home/spider6.jpeg" data-title="Spiderpark Resort">
+            <img src="Images/Home/spider6.jpeg" alt="Kids Play Area" class="gallery-image">
+            <div class="image-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+      </div>
+      <!-- Image 7 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="gallery-item">
+          <div class="card-img-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="Images/Home/spider7.jpeg" data-title="Spiderpark Resort">
+            <img src="Images/Home/spider7.jpeg" alt="Park Murals" class="gallery-image">
+            <div class="image-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+      </div>
+      <!-- Image 8 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="gallery-item">
+          <div class="card-img-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="Images/Home/spider8.jpeg" data-title="Spiderpark Resort">
+            <img src="Images/Home/spider8.jpeg" alt="Birthday Parties" class="gallery-image">
+            <div class="image-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+      </div>
+      <!-- Image 9 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="gallery-item">
+          <div class="card-img-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="Images/Home/booze.jpg" data-title="Spiderpark Resort">
+            <img src="Images/Home/booze.jpg" alt="Food & Drinks" class="gallery-image">
+            <div class="image-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+      </div>
+      <!-- Image 10 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="gallery-item">
+          <div class="card-img-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="Images/Home/spider10.jpeg" data-title="Spiderpark Resort">
+            <img src="Images/Home/spider10.jpeg" alt="Relaxation Area" class="gallery-image">
+            <div class="image-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+      </div>
+      <!-- Image 11 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="gallery-item">
+          <div class="card-img-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="Images/Home/spider11.jpeg" data-title="Spiderpark Resort">
+            <img src="Images/Home/spider11.jpeg" alt="Park Entrance" class="gallery-image">
+            <div class="image-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+      </div>
+      <!-- Image 12 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="gallery-item">
+          <div class="card-img-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-image="Images/Home/spider12.jpeg" data-title="Spiderpark Resort">
+            <img src="Images/Home/spider12.jpeg" alt="Family Fun" class="gallery-image">
+            <div class="image-overlay"><i class="fas fa-search-plus"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Full Image View Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="imageModalLabel" style="color: var(--spider-red); font-weight: 700;">Gallery View</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center p-4">
+        <img id="fullGalleryImage" src="" alt="Full Image" class="img-fluid rounded shadow-lg" style="max-height: 80vh; width: auto;">
+        <h4 id="fullGalleryTitle" class="mt-3 mb-0" style="color: var(--spider-blue);"></h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Contact Section -->
+<!-- ============ CONTACT SECTION (WOW VERSION) ============ -->
+<section id="contact" class="contact-section-v2">
+  <!-- Decorative Glows -->
+  <div class="contact-glow glow-red"></div>
+  <div class="contact-glow glow-blue"></div>
+
+  <div class="container position-relative">
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-subtitle">Get in touch for bookings, party packages, or food arrangements!</p>
+
+    <!-- Quick Contact Cards -->
+    <div class="row g-4 mb-5">
+      <div class="col-lg-3 col-md-6">
+        <div class="contact-info-card">
+          <div class="cic-icon"><i class="fas fa-phone-alt"></i></div>
+          <h5>Call Us</h5>
+          <a href="tel:0799212404">079 921 2404</a>
+          <small class="d-block mt-1">Mon - Sun</small>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="contact-info-card">
+          <div class="cic-icon whatsapp"><i class="fab fa-whatsapp"></i></div>
+          <h5>WhatsApp</h5>
+          <a href="https://wa.me/27799212404" target="_blank">Chat With Us</a>
+          <small class="d-block mt-1">Quick replies</small>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="contact-info-card">
+          <div class="cic-icon"><i class="fas fa-clock"></i></div>
+          <h5>Opening Hours</h5>
+          <p class="mb-0 fw-semibold">08:00 AM till Late</p>
+          <small class="d-block mt-1">Open Friday to Sunday</small>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="contact-info-card">
+          <div class="cic-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <h5>Find Us</h5>
+          <p class="mb-0 fw-semibold">Khumbulekhaya Phiva, </p>
+          <small class="d-block mt-1">Nkomazi</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 align-items-stretch">
+      <!-- Contact Form -->
+      <div class="col-lg-6">
+        <div class="contact-form-v2 h-100">
+          <h4 class="mb-4 color-blue"><i class="fas fa-paper-plane me-2 color-red"></i>Send us a Message</h4>
+          <form id="contactForm">
+            <div class="row">
+              <div class="col-md-6">
+                <input type="text" class="form-control" name="name" placeholder="Your Name" required>
+              </div>
+              <div class="col-md-6">
+                <input type="tel" class="form-control" name="phone" placeholder="Your Phone Number" required>
+              </div>
+            </div>
+            <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+            
+            <select class="form-control" name="subject" required>
+              <option value="" disabled selected>Select Reason for Contact</option>
+              <option value="General Booking">General Booking / Entry</option>
+              <option value="Birthday Party">Birthday Party Package</option>
+              <option value="Food Arrangement">Food Arrangement / Catering</option>
+              <option value="Group Event">Group Event</option>
+            </select>
+            
+            <textarea class="form-control" name="message" rows="5" placeholder="Tell us about your visit, number of people, or food requirements..." required></textarea>
+            
+            <button type="submit" class="btn btn-spider w-100">
+              <i class="fas fa-paper-plane me-2"></i>Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Google Map Integration -->
+      <div class="col-lg-6">
+        <div class="map-frame h-100">
+          <!-- ⬇️ REPLACE THE src BELOW WITH YOUR OWN GOOGLE MAPS EMBED (instructions below) -->
+          <iframe 
+            src="https://maps.google.com/maps?q=Spider%20Park,%20South%20Africa&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade" title="Spider Park Location">
+          </iframe>
+
+          <!-- Live Status Badge -->
+          <div class="map-badge">
+            <span class="pulse-dot"></span> Open Daily • 08:00 AM till Late
+          </div>
+
+          <!-- Floating Directions Card -->
+          <div class="map-overlay-card">
+            <div>
+              <h5><i class="fas fa-spider me-2 color-red"></i>Spider Park</h5>
+              <small class="text-muted">Your home of family fun & events</small>
+            </div>
+            <!-- ⬇️ Update destination= with your exact address -->
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Spider%20Park" target="_blank" class="btn btn-spider btn-sm px-3">
+              <i class="fas fa-directions me-1"></i>Directions
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <h4 class="footer-title">🕷️ Spider Park</h4>
+        <p>The ultimate family destination featuring swimming pools, fun events, and a web-slinging good time for kids and adults!</p>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <h4 class="footer-title">Quick Links</h4>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#home">Home</a></li>
+          <li class="mb-2"><a href="#pricing">Tickets</a></li>
+          <li class="mb-2"><a href="#activities">Activities</a></li>
+          <li class="mb-2"><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <h4 class="footer-title">Contact Info</h4>
+        <p><i class="fas fa-user me-2 color-red"></i> Khumbulekhaya Phiva</p>
+        <p><i class="fas fa-phone me-2 color-red"></i> 079 921 2404</p>
+        <p><i class="fas fa-clock me-2 color-red"></i> 08:00 AM - Late</p>
+        <div class="social-icons mt-3">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr class="mt-4 mb-4" style="border-color: rgba(255,255,255,0.1);">
+    <div class="row">
+      <div class="col-md-6">
+        <p>&copy; 2026 Spider Park. All rights reserved.</p>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <p>Designed with <i class="fas fa-heart color-red"></i> for family fun!</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Booking Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Book Your Visit to Spider Park</h5>
+        <button type="button" class="btn-close close-btn" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="bookingForm">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-control" name="full_name" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Phone Number *</label>
+              <input type="tel" class="form-control" name="phone" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label class="form-label">Date of Visit *</label>
+              <input type="date" class="form-control" name="date" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Number of People *</label>
+              <input type="number" class="form-control" name="guests" min="1" required>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Ticket Type *</label>
+            <select class="form-control" name="ticket_type" required>
+              <option value="">Select Ticket Type</option>
+              <option value="Kids Only">Kids Only (R30 per child)</option>
+              <option value="Adults Only">Adults Only (R50 per adult)</option>
+              <option value="Mixed Group">Mixed Group (Kids & Adults)</option>
+              <option value="Birthday Party">Birthday Party / Event</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Do you need Food Arrangements?</label>
+            <select class="form-control" name="food_arrangement">
+              <option value="No">No, we will buy drinks inside</option>
+              <option value="Yes">Yes, I want to arrange food catering</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Special Requests</label>
+            <textarea class="form-control" name="special_requests" rows="3"></textarea>
+          </div>
+          <div class="alert alert-info">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>Note:</strong> Drinks are sold inside the park. If you selected "Yes" for food, Khumbulekhaya will contact you to arrange catering!
+          </div>
+          <div class="modal-footer px-0 pb-0">
+            <button type="button" class="btn btn-outline-spider" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-spider">Submit Booking Request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Activity/Image Modal -->
+<div class="modal fade" id="activityModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Spider Park Activity</h5>
+        <button type="button" class="btn-close close-btn" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img id="activityModalImage" src="" alt="" class="img-fluid rounded mb-3">
+        <h4 id="activityModalTitle" class="color-red"></h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Gallery Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Gallery View</h5>
+        <button type="button" class="btn-close close-btn" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img id="modalImage" src="" alt="" class="img-fluid rounded mb-3">
+        <h4 id="modalTitle" class="color-blue"></h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background: linear-gradient(to right, #28a745, #20c997); color: white;">
+        <h5 class="modal-title">Success!</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4 text-center">
+        <i class="fas fa-check-circle" style="font-size: 4rem; color: #28a745;"></i>
+        <h4 class="mt-3">Message Sent Successfully!</h4>
+        <p>Khumbulekhaya will contact you shortly on your provided number to confirm your booking or food arrangement.</p>
+        <button type="button" class="btn btn-spider mt-3" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+// Make "Home" links scroll to top while mobile hero is active
+document.querySelectorAll('a[href="#home"]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    if (window.matchMedia('(max-width: 576px)').matches) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+});  
+
+  // Event Poster Modal Logic
+document.addEventListener('DOMContentLoaded', function() {
+  const eventPosterModal = document.getElementById('eventPosterModal');
+  if (eventPosterModal) {
+    eventPosterModal.addEventListener('show.bs.modal', function(event) {
+      const button = event.relatedTarget;
+      const imageSrc = button.getAttribute('data-image');
+      const title = button.getAttribute('data-title');
+      
+      document.getElementById('fullEventPoster').src = imageSrc;
+      document.getElementById('eventPosterTitle').textContent = title;
+    });
+  }
+});
+
+// Gallery Modal Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const imageModal = document.getElementById('imageModal');
+  
+  if (imageModal) {
+    imageModal.addEventListener('show.bs.modal', function(event) {
+      // Button that triggered the modal
+      const button = event.relatedTarget;
+      
+      // Extract info from data-* attributes
+      const imageSrc = button.getAttribute('data-image');
+      const imageTitle = button.getAttribute('data-title');
+      
+      // Update the modal's content
+      const modalImg = document.getElementById('fullGalleryImage');
+      const modalTitle = document.getElementById('fullGalleryTitle');
+      
+      modalImg.src = imageSrc;
+      modalTitle.textContent = imageTitle;
+    });
+  }
+});
+
+
+// Navbar scroll effect
+window.addEventListener('scroll', function() {
+  const navbar = document.querySelector('.navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('navbar-scrolled');
+  } else {
+    navbar.classList.remove('navbar-scrolled');
+  }
+});
+
+// Activity Modal Logic
+document.addEventListener('DOMContentLoaded', function() {
+  const activityModal = document.getElementById('activityModal');
+  if (activityModal) {
+    activityModal.addEventListener('show.bs.modal', function(event) {
+      const button = event.relatedTarget;
+      const imageSrc = button.getAttribute('data-image');
+      const title = button.getAttribute('data-title');
+      document.getElementById('activityModalImage').src = imageSrc;
+      document.getElementById('activityModalTitle').textContent = title;
+    });
+  }
+
+  // Gallery Modal Logic
+  const imageModal = document.getElementById('imageModal');
+  if (imageModal) {
+    imageModal.addEventListener('show.bs.modal', function(event) {
+      const button = event.relatedTarget;
+      const imageSrc = button.getAttribute('data-image');
+      const title = button.getAttribute('data-title');
+      document.getElementById('modalImage').src = imageSrc;
+      document.getElementById('modalTitle').textContent = title;
+    });
+  }
+
+  // Contact Form Submission
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+      submitBtn.disabled = true;
+
+      // Simulate sending (Replace with your actual backend/PHP)
+      setTimeout(() => {
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        successModal.show();
+        this.reset();
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      }, 1500);
+    });
+  }
+
+  // Booking Form Submission
+  const bookingForm = document.getElementById('bookingForm');
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+      submitBtn.disabled = true;
+
+      // Simulate sending
+      setTimeout(() => {
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        successModal.show();
+        this.reset();
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        
+        // Close booking modal
+        const bookingModal = bootstrap.Modal.getInstance(document.getElementById('bookingModal'));
+        if (bookingModal) bookingModal.hide();
+      }, 1500);
+    });
+  }
+});
+</script>
+</body>
+</html>
