@@ -1057,6 +1057,58 @@ html, body {
   50% { transform: rotate(15deg) translateY(-10px); }
 }
 
+/* ============ MOBILE SERVICES CAROUSEL (1 CARD PER SLIDE) ============ */
+#servicesCarouselMobile { display: none; }
+
+@media (max-width: 767.98px) {
+  #servicesCarousel { display: none !important; }        /* Hide 4-card version on phones */
+  #servicesCarouselMobile { display: block; padding-bottom: 3.5rem; }  /* Show 1-card version */
+}
+
+/* Center a single card nicely */
+#servicesCarouselMobile .service-slide-card {
+  max-width: 420px;
+  margin: 0 auto;
+  height: auto;
+  min-height: 400px;
+}
+
+/* Small round dots (8 of them fit better than bars) */
+#servicesCarouselMobile .carousel-indicators {
+  bottom: 0;
+}
+#servicesCarouselMobile .carousel-indicators button {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin: 0 3px;
+  background-color: rgba(226, 54, 54, 0.3);
+  border: none;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+#servicesCarouselMobile .carousel-indicators button.active {
+  width: 9px;
+  background: linear-gradient(135deg, var(--spider-red), var(--spider-blue));
+  transform: scale(1.4);
+}
+
+/* Arrows always visible on touch screens (no hover on phones) */
+#servicesCarouselMobile .carousel-control-prev,
+#servicesCarouselMobile .carousel-control-next {
+  opacity: 1;
+  width: 38px;
+  height: 38px;
+  top: 45%;
+}
+#servicesCarouselMobile .carousel-control-prev { left: 8px; }
+#servicesCarouselMobile .carousel-control-next { right: 8px; }
+#servicesCarouselMobile .carousel-control-prev-icon,
+#servicesCarouselMobile .carousel-control-next-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
 /* Typography */
 .splash-welcome {
   font-family: 'Poppins', sans-serif;
@@ -1765,6 +1817,145 @@ body.loading {
     </div>
   </div>
 </section>
+
+<!-- ============ MOBILE SERVICES CAROUSEL (1 CARD PER SLIDE) ============ -->
+<div id="servicesCarouselMobile" class="carousel slide services-carousel">
+  <div class="carousel-inner">
+
+    <!-- Slide 1: Events -->
+    <div class="carousel-item active">
+      <div class="px-3">
+        <div class="service-slide-card">
+          <div class="service-slide-image"><img src="Images/Services/events.jpeg" alt="Events & Functions"></div>
+          <div class="service-slide-info">
+            <div class="service-slide-icon"><i class="fas fa-glass-cheers"></i></div>
+            <h4>Events & Functions</h4>
+            <p>Corporate events, family reunions, and large-scale functions hosted in our spacious, secure outdoor venues.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Weddings -->
+    <div class="carousel-item">
+      <div class="px-3">
+        <div class="service-slide-card">
+          <div class="service-slide-image"><img src="Images/Services/weddings.jpg" alt="Weddings"></div>
+          <div class="service-slide-info">
+            <div class="service-slide-icon"><i class="fas fa-camera"></i></div>
+            <h4>Weddings</h4>
+            <p>Beautiful garden weddings with ample space for your guests, ceremonies, and receptions under the sun.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Baby Showers -->
+    <div class="carousel-item">
+      <div class="px-3">
+        <div class="service-slide-card">
+          <div class="service-slide-image"><img src="Images/Services/baby-shower.jpg" alt="Baby Showers"></div>
+          <div class="service-slide-info">
+            <div class="service-slide-icon"><i class="fas fa-baby-carriage"></i></div>
+            <h4>Baby Showers</h4>
+            <p>Safe, fun, and beautifully shaded areas perfect for welcoming the newest little hero to the family.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Birthday Parties -->
+    <div class="carousel-item">
+      <div class="px-3">
+        <div class="service-slide-card">
+          <div class="service-slide-image"><img src="Images/Services/birthday.jpg" alt="Birthday Parties"></div>
+          <div class="service-slide-info">
+            <div class="service-slide-icon"><i class="fas fa-cake-candles"></i></div>
+            <h4>Birthday Parties</h4>
+            <p>Make birthdays epic! Kids and adults can enjoy the pools, games, and a fantastic party atmosphere.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5: Picnics -->
+    <div class="carousel-item">
+      <div class="px-3">
+        <div class="service-slide-card">
+          <div class="service-slide-image"><img src="Images/Services/picnic.jpg" alt="Picnics"></div>
+          <div class="service-slide-info">
+            <div class="service-slide-icon"><i class="fas fa-tree"></i></div>
+            <h4>Picnics</h4>
+            <p>Relaxing picnic spots with lush green grass, shade, and a peaceful environment for family day-outs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6: Lobola -->
+    <div class="carousel-item">
+      <div class="px-3">
+        <div class="service-slide-card">
+          <div class="service-slide-image"><img src="Images/Services/lobola.png" alt="Lobola Celebration"></div>
+          <div class="service-slide-info">
+            <div class="service-slide-icon"><i class="fas fa-handshake"></i></div>
+            <h4>Lobola Celebration</h4>
+            <p>A private, respectful, and comfortable setting for traditional meetings and family negotiations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 7: Decor -->
+    <div class="carousel-item">
+      <div class="px-3">
+        <div class="service-slide-card">
+          <div class="service-slide-image"><img src="Images/Services/decor.jpg" alt="Decor & Styling"></div>
+          <div class="service-slide-info">
+            <div class="service-slide-icon"><i class="fas fa-palette"></i></div>
+            <h4>Decor & Styling</h4>
+            <p>Transform our space with our decor services. We help style your event to match your unique theme.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 8: Custom Packages -->
+    <div class="carousel-item">
+      <div class="px-3">
+        <div class="service-slide-card special">
+          <div class="service-slide-image"><img src="Images/Services/custom.jpeg" alt="Custom Packages"></div>
+          <div class="service-slide-info">
+            <div class="service-slide-icon"><i class="fas fa-star"></i></div>
+            <h4>Custom Packages</h4>
+            <p>Need something specific? Contact us to create a custom package tailored exactly to your needs!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Dots -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#servicesCarouselMobile" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#servicesCarouselMobile" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#servicesCarouselMobile" data-bs-slide-to="2"></button>
+    <button type="button" data-bs-target="#servicesCarouselMobile" data-bs-slide-to="3"></button>
+    <button type="button" data-bs-target="#servicesCarouselMobile" data-bs-slide-to="4"></button>
+    <button type="button" data-bs-target="#servicesCarouselMobile" data-bs-slide-to="5"></button>
+    <button type="button" data-bs-target="#servicesCarouselMobile" data-bs-slide-to="6"></button>
+    <button type="button" data-bs-target="#servicesCarouselMobile" data-bs-slide-to="7"></button>
+  </div>
+
+  <!-- Arrows -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#servicesCarouselMobile" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#servicesCarouselMobile" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
 
 <!-- Food & Drinks Section -->
 <section id="food" class="section-padding bg-light-spider">
